@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <title>Cookie Orders</title>
+</head>
+<body>
+    <div class="container col-8">
+        <h1 class="text-center p-2 bg-info">Cookie Orders</h1>
+        <div class="d-flex justify-content-between mt-4 mb-2">
+            <h4>All Orders:</h4>
+            <a href="/cookies/new" class="btn btn-warning">+ New Order</a>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Cookie Type</th>
+                    <th scope="col">Number of Boxes</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for order in orders %}
+                    <tr>
+                        <td>{{order.customer_name}}</td>
+                        <td>{{order.cookie_type}}</td>
+                        <td>{{order.number_of_box}}</td>
+                        <td><a href="/cookies/edit/{{order.id}}">edit</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
